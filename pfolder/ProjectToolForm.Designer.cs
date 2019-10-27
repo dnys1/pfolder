@@ -51,7 +51,7 @@
             this.ProjectNo_TextBox.Name = "ProjectNo_TextBox";
             this.ProjectNo_TextBox.Size = new System.Drawing.Size(254, 22);
             this.ProjectNo_TextBox.TabIndex = 1;
-            this.ProjectNo_TextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ProjectNo_TextBox_KeyUp);
+            this.ProjectNo_TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ProjectNo_TextBox_KeyDown);
             // 
             // Button_ProjectFolder
             // 

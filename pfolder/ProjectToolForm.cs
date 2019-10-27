@@ -134,6 +134,7 @@ namespace pfolder
             {
                 _isMessageBoxShowing = true;
                 MessageBox.Show(error, caption, MessageBoxButtons.OK, icon);
+                _isMessageBoxShowing = false;
             } else
             {
                 LogStatus(string.Concat(caption, ": ", error), type);
@@ -552,20 +553,12 @@ namespace pfolder
             return outerHtml.Substring(startIndex, endIndex);
         }
 
-        private async void ProjectNo_TextBox_KeyUp(object sender, KeyEventArgs e)
+        private async void ProjectNo_TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 e.Handled = true;
-
-                // Ignore key press if MessageBox was just displayed.
-                // Will ignore next press if MessageBox is closed with mouse instead...
-                // Kind of a hack to make the form more usable.
-                if (_isMessageBoxShowing)
-                {
-                    _isMessageBoxShowing = false;
-                }
-                else
+                if (!_isMessageBoxShowing)
                 {
                     await LoadProjectFolder();
                 }
