@@ -21,14 +21,11 @@ namespace pfolder
                 Regex projectNoMatcher = new Regex(@"^\d\d\d\d\d\d$");
                 foreach (string arg in args)
                 {
-                    Console.Write(arg + " ");
                     if (projectNoMatcher.IsMatch(arg))
                     {
                         projectNo = arg;
-                        Console.WriteLine(true);
                         break;
                     }
-                    Console.WriteLine(false);
                 }
             }
             if (projectNo == null)
