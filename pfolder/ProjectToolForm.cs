@@ -61,6 +61,8 @@ namespace pfolder
 
         private bool _isMessageBoxShowing = false;
 
+        private bool _isRunning = false;
+
         private enum MessageType
         {
             Warning,
@@ -109,6 +111,7 @@ namespace pfolder
             ProgressBar.Minimum = 0;
             ProgressBar.Maximum = 100;
             ProgressBar.Value = 0;
+            _isRunning = false;
         }
         
         private void ShowError(string error, MessageType type)
@@ -162,6 +165,8 @@ namespace pfolder
             {
                 return null;
             }
+
+            _isRunning = true;
 
             Regex projectNoMatcher = new Regex(@"^\d\d\d\d\d\d$");
             if (!projectNoMatcher.IsMatch(projectNo))
@@ -558,7 +563,7 @@ namespace pfolder
             if (e.KeyCode == Keys.Enter)
             {
                 e.Handled = true;
-                if (!_isMessageBoxShowing)
+                if (!_isMessageBoxShowing && !_isRunning)
                 {
                     await LoadProjectFolder();
                 }
