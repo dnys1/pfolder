@@ -316,15 +316,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Project Folder Tool"
-        "ProductCode" = "8:{A15EA030-7FA9-4D60-B989-7DBDFF17D5E5}"
-        "PackageCode" = "8:{31996DD3-D05E-4EF9-A064-54F03A4C4A3A}"
+        "ProductCode" = "8:{E689207E-76E7-4FEB-B9AD-ABA9A3FB14C9}"
+        "PackageCode" = "8:{AA3D77FC-D1E3-43C6-8355-0C6E4E0878EB}"
         "UpgradeCode" = "8:{11ACB45A-05B7-4A8A-AD9A-5D0E291A1C9D}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.1"
+        "ProductVersion" = "8:1.0.3"
         "Manufacturer" = "8:Brown and Caldwell"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -894,7 +894,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E78B477B1F354D6EA28D30543BC525C2"
             {
-            "SourcePath" = "8:..\\pfolder\\obj\\Debug\\BC Project Folder Tool.exe"
+            "SourcePath" = "8:..\\pfolder\\obj\\Release\\BC Project Folder Tool.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_40EEE3F99F4745A79AA5B86CEF226961"

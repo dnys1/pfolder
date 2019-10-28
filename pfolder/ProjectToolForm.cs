@@ -267,6 +267,8 @@ namespace pfolder
                     string error = "Project does not have a BD folder on record.";
                     ShowError(error, MessageType.Warning);
                     ResetForm(resetTxtBox: false);
+
+                    return UNAVAILABLE;
                 }
 
                 if (!jsonChecked)
