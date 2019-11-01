@@ -3,28 +3,42 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pfolder", "pfolder\pfolder.csproj", "{5D695636-4EE1-4189-9E27-243F96ACFDCC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFolder", "pfolder\PFolder.csproj", "{5D695636-4EE1-4189-9E27-243F96ACFDCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pfolder_test", "pfolder_test\pfolder_test.csproj", "{044C6747-0249-455B-BED4-0AD27A21FAF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFolder_Test", "pfolder_test\PFolder_Test.csproj", "{044C6747-0249-455B-BED4-0AD27A21FAF3}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "installer", "installer\installer.vdproj", "{98EB8501-775A-41C0-9556-3DB7CF2E492C}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "installer\installer.vdproj", "{98EB8501-775A-41C0-9556-3DB7CF2E492C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallerHelper", "InstallerHelper\InstallerHelper.csproj", "{FA3EB60F-B397-4825-B125-A061ED4F08AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Release-NoPDB|Any CPU = Release-NoPDB|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5D695636-4EE1-4189-9E27-243F96ACFDCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5D695636-4EE1-4189-9E27-243F96ACFDCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D695636-4EE1-4189-9E27-243F96ACFDCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D695636-4EE1-4189-9E27-243F96ACFDCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D695636-4EE1-4189-9E27-243F96ACFDCC}.Release-NoPDB|Any CPU.ActiveCfg = Release-NoPDB|Any CPU
+		{5D695636-4EE1-4189-9E27-243F96ACFDCC}.Release-NoPDB|Any CPU.Build.0 = Release-NoPDB|Any CPU
 		{044C6747-0249-455B-BED4-0AD27A21FAF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{044C6747-0249-455B-BED4-0AD27A21FAF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{044C6747-0249-455B-BED4-0AD27A21FAF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{044C6747-0249-455B-BED4-0AD27A21FAF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{044C6747-0249-455B-BED4-0AD27A21FAF3}.Release-NoPDB|Any CPU.ActiveCfg = Release-NoPDB|Any CPU
+		{044C6747-0249-455B-BED4-0AD27A21FAF3}.Release-NoPDB|Any CPU.Build.0 = Release-NoPDB|Any CPU
 		{98EB8501-775A-41C0-9556-3DB7CF2E492C}.Debug|Any CPU.ActiveCfg = Debug
 		{98EB8501-775A-41C0-9556-3DB7CF2E492C}.Release|Any CPU.ActiveCfg = Release
+		{98EB8501-775A-41C0-9556-3DB7CF2E492C}.Release-NoPDB|Any CPU.ActiveCfg = Release-NoPDB
+		{FA3EB60F-B397-4825-B125-A061ED4F08AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA3EB60F-B397-4825-B125-A061ED4F08AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA3EB60F-B397-4825-B125-A061ED4F08AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA3EB60F-B397-4825-B125-A061ED4F08AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA3EB60F-B397-4825-B125-A061ED4F08AC}.Release-NoPDB|Any CPU.ActiveCfg = Release|Any CPU
+		{FA3EB60F-B397-4825-B125-A061ED4F08AC}.Release-NoPDB|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
