@@ -1,11 +1,7 @@
 ﻿using Microsoft.Win32;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration.Install;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace InstallerHelper
 {
@@ -25,7 +21,46 @@ namespace InstallerHelper
             // Get non-expanded PATH environment variable 
             string oldPath = (string)Registry.LocalMachine.CreateSubKey(keyName).GetValue("Path", "", RegistryValueOptions.DoNotExpandEnvironmentNames);
             // Include target directory in PATH variable
-            Registry.LocalMachine.CreateSubKey(keyName).SetValue("Path", oldPath + Context.Parameters["TargetDir"] + ";", RegistryValueKind.ExpandString);
+            string targetDir = Context.Parameters["TargetDir"];
+            if (oldPath.IndexOf(targetDir) != -1)
+            {
+                return;
+            }
+
+            string separator = "";
+            if (oldPath.ElementAt(oldPath.Length - 1) != ';')
+            {
+                separator = ";";
+            }
+            string newPath = oldPath + separator + targetDir + ";";
+            
+            Registry.LocalMachine.CreateSubKey(keyName).SetValue("Path", newPath, RegistryValueKind.ExpandString);
+        }
+
+        protected override void OnAfterUninstall(IDictionary savedState)
+        {
+            base.OnAfterUninstall(savedState);
+
+            string keyName = @"SYSTEM\CurrentControlSet\Control\Session Manager\Environment";
+            // Get non-expanded PATH environment variable 
+            string currentPath = (string)Registry.LocalMachine.CreateSubKey(keyName).GetValue("Path", "", RegistryValueOptions.DoNotExpandEnvironmentNames);
+            // Remove target directory from PATH variable
+            string targetDir = Context.Parameters["TargetDir"];
+            string newPath = getNewPath(currentPath, targetDir);
+
+            Registry.LocalMachine.CreateSubKey(keyName).SetValue("Path", newPath, RegistryValueKind.ExpandString);
+        }
+
+        public static string getNewPath(string currentPath, string targetDir)
+        {
+            int startIndex = currentPath.IndexOf(targetDir);
+            if (startIndex == 0)
+            {
+                return currentPath.Substring(targetDir.Length + 1);
+            } else
+            {
+                return currentPath.Substring(0, startIndex - 1) + currentPath.Substring(startIndex + targetDir.Length);
+            }
         }
     }
 }

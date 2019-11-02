@@ -209,6 +209,20 @@
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:/TargetDir=\"[TARGETDIR]\\\""
             }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_DF85232E77C7434296438283762D6F64"
+            {
+            "Name" = "8:Primary output from InstallerHelper (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_38016D2B844245D182D06305BA33D61B"
+            "FileType" = "3:1"
+            "InstallAction" = "3:4"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_31215259_EEC1_4335_AA0D_38407EB6CE78"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:/LogFile=\"C:\\log.txt\" /LogToConsole=true /TargetDir=\"[TARGETDIR]\\\""
+            }
         }
         "DefaultFeature"
         {
@@ -413,7 +427,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Project Folder Tool"
         "ProductCode" = "8:{E689207E-76E7-4FEB-B9AD-ABA9A3FB14C9}"
-        "PackageCode" = "8:{393D19FA-1D2F-4DE4-9A9C-240EC095BC1B}"
+        "PackageCode" = "8:{A825491B-65D7-40CD-9C8C-F351846EECD2}"
         "UpgradeCode" = "8:{11ACB45A-05B7-4A8A-AD9A-5D0E291A1C9D}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

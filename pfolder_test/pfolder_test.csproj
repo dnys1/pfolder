@@ -55,6 +55,7 @@
       <HintPath>..\packages\MSTest.TestFramework.2.0.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
@@ -67,6 +68,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="InstallerHelperTests.cs" />
     <Compile Include="ProjectToolFormTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -76,6 +78,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\InstallerHelper\InstallerHelper.csproj">
+      <Project>{fa3eb60f-b397-4825-b125-a061ed4f08ac}</Project>
+      <Name>InstallerHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\pfolder\PFolder.csproj">
       <Project>{5D695636-4EE1-4189-9E27-243F96ACFDCC}</Project>
       <Name>PFolder</Name>
