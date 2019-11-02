@@ -19,20 +19,15 @@ namespace InstallerHelper
 
             string keyName = @"SYSTEM\CurrentControlSet\Control\Session Manager\Environment";
             // Get non-expanded PATH environment variable 
-            string oldPath = (string)Registry.LocalMachine.CreateSubKey(keyName).GetValue("Path", "", RegistryValueOptions.DoNotExpandEnvironmentNames);
+            string currentPath = (string)Registry.LocalMachine.CreateSubKey(keyName).GetValue("Path", "", RegistryValueOptions.DoNotExpandEnvironmentNames);
             // Include target directory in PATH variable
             string targetDir = Context.Parameters["TargetDir"];
-            if (oldPath.IndexOf(targetDir) != -1)
+            if (currentPath.IndexOf(targetDir) != -1)
             {
                 return;
             }
 
-            string separator = "";
-            if (oldPath.ElementAt(oldPath.Length - 1) != ';')
-            {
-                separator = ";";
-            }
-            string newPath = oldPath + separator + targetDir + ";";
+            string newPath = addToPath(currentPath, targetDir);
             
             Registry.LocalMachine.CreateSubKey(keyName).SetValue("Path", newPath, RegistryValueKind.ExpandString);
         }
@@ -46,12 +41,22 @@ namespace InstallerHelper
             string currentPath = (string)Registry.LocalMachine.CreateSubKey(keyName).GetValue("Path", "", RegistryValueOptions.DoNotExpandEnvironmentNames);
             // Remove target directory from PATH variable
             string targetDir = Context.Parameters["TargetDir"];
-            string newPath = getNewPath(currentPath, targetDir);
+            string newPath = removeFromPath(currentPath, targetDir);
 
             Registry.LocalMachine.CreateSubKey(keyName).SetValue("Path", newPath, RegistryValueKind.ExpandString);
         }
 
-        public static string getNewPath(string currentPath, string targetDir)
+        public static string addToPath(string currentPath, string targetDir)
+        {
+            string separator = "";
+            if (currentPath.ElementAt(currentPath.Length - 1) != ';')
+            {
+                separator = ";";
+            }
+            return currentPath + separator + targetDir + ";";
+        }
+
+        public static string removeFromPath(string currentPath, string targetDir)
         {
             int startIndex = currentPath.IndexOf(targetDir);
             if (startIndex == 0)
