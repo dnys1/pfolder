@@ -34,6 +34,7 @@
             this.Button_ProjectFolder = new System.Windows.Forms.Button();
             this.Button_BD = new System.Windows.Forms.Button();
             this.ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.Button_WorkSmart = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ProjectNo_Label
@@ -75,22 +76,32 @@
             // 
             // ProgressBar
             // 
-            this.ProgressBar.Location = new System.Drawing.Point(16, 103);
+            this.ProgressBar.Location = new System.Drawing.Point(16, 140);
             this.ProgressBar.Name = "ProgressBar";
             this.ProgressBar.Size = new System.Drawing.Size(254, 10);
             this.ProgressBar.TabIndex = 4;
             // 
+            // Button_WorkSmart
+            // 
+            this.Button_WorkSmart.Location = new System.Drawing.Point(16, 103);
+            this.Button_WorkSmart.Name = "Button_WorkSmart";
+            this.Button_WorkSmart.Size = new System.Drawing.Size(253, 31);
+            this.Button_WorkSmart.TabIndex = 5;
+            this.Button_WorkSmart.Text = "Go to WorkSmart Profile";
+            this.Button_WorkSmart.UseVisualStyleBackColor = true;
+            this.Button_WorkSmart.Click += new System.EventHandler(this.Button_WorkSmart_Click);
+            // 
             // ProjectToolForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(282, 119);
+            this.ClientSize = new System.Drawing.Size(282, 157);
+            this.Controls.Add(this.Button_WorkSmart);
             this.Controls.Add(this.ProgressBar);
             this.Controls.Add(this.Button_BD);
             this.Controls.Add(this.Button_ProjectFolder);
             this.Controls.Add(this.ProjectNo_TextBox);
             this.Controls.Add(this.ProjectNo_Label);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(300, 166);
             this.MinimumSize = new System.Drawing.Size(300, 166);
             this.Name = "ProjectToolForm";
             this.Text = "Project Folder Tool";
@@ -107,6 +118,7 @@
         private System.Windows.Forms.Button Button_ProjectFolder;
         private System.Windows.Forms.Button Button_BD;
         private System.Windows.Forms.ProgressBar ProgressBar;
+        private System.Windows.Forms.Button Button_WorkSmart;
     }
 }
 

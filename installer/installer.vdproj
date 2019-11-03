@@ -427,7 +427,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Project Folder Tool"
         "ProductCode" = "8:{E689207E-76E7-4FEB-B9AD-ABA9A3FB14C9}"
-        "PackageCode" = "8:{A825491B-65D7-40CD-9C8C-F351846EECD2}"
+        "PackageCode" = "8:{866D1415-3E52-417A-B99B-39F7F5E82F03}"
         "UpgradeCode" = "8:{11ACB45A-05B7-4A8A-AD9A-5D0E291A1C9D}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

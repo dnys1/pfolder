@@ -202,5 +202,28 @@ namespace pfolder.Tests
             string BDPath = AsyncHelpers.RunSync<string>(() => form.LoadProjectFolder(projectNo, isBD: true));
             Assert.AreEqual(expectedBDPath, BDPath);
         }
+
+        [TestMethod()]
+        public void GoToProfile_Test()
+        {
+            _setupTests();
+
+            ProjectToolForm form = new ProjectToolForm(testing: true);
+
+            string cookie = AsyncHelpers.RunSync<string>(form.GetCookie);
+            Assert.IsNotNull(cookie, "Retrieved cookie is null.");
+            form.Cookie = cookie;
+
+            // Test 5: Go to WorkSmart profile test
+            string projectNo = _tests["GoToProfile_Test"]["projectNo"];
+            string expectedSID = _tests["GoToProfile_Test"]["expectedSID"];
+            string expectedProjectPath = _tests["GoToProfile_Test"]["expectedProjectPath"];
+
+            string SID = AsyncHelpers.RunSync<string>(() => form.GetSID(projectNo));
+            Assert.AreEqual(expectedSID, SID, "SID retrieved is invalid for project .");
+
+            string projectPath = AsyncHelpers.RunSync<string>(() => form.LoadProjectFolder(projectNo, goToProfile: true));
+            Assert.AreEqual(expectedProjectPath, projectPath);
+        }
     }
 }

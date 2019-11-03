@@ -96,6 +96,11 @@ namespace pfolder
             await LoadProjectFolder(isBD: true);
         }
 
+        private async void Button_WorkSmart_Click(object sender, EventArgs e)
+        {
+            await LoadProjectFolder(goToProfile: true);
+        }
+
         private void ResetForm(bool resetTxtBox = true)
         {
             if (!Created)
@@ -133,15 +138,12 @@ namespace pfolder
                 icon = MessageBoxIcon.Error;
                 caption = "Error";
             }
-            if (Created)
-            {
-                _isMessageBoxShowing = true;
-                MessageBox.Show(error, caption, MessageBoxButtons.OK, icon);
-                _isMessageBoxShowing = false;
-            } else
-            {
-                LogStatus(string.Concat(caption, ": ", error), type);
-            }
+
+            _isMessageBoxShowing = true;
+            MessageBox.Show(error, caption, MessageBoxButtons.OK, icon);
+            _isMessageBoxShowing = false;
+
+            LogStatus(string.Concat(caption, ": ", error), type);
         }
 
         private void LogStatus(string error, MessageType type = MessageType.Info)
@@ -155,7 +157,7 @@ namespace pfolder
 #endif
         }
 
-        public async Task<string> LoadProjectFolder(string projectNo = null, bool isBD = false)
+        public async Task<string> LoadProjectFolder(string projectNo = null, bool isBD = false, bool goToProfile = false)
         {
             if (projectNo == null)
             {
@@ -174,7 +176,7 @@ namespace pfolder
                 string error = "BC Project No. must be exactly 6 digits.";
                 ShowError(error, MessageType.Warning);
 
-                ResetForm(false);
+                ResetForm(resetTxtBox: false);
 
                 return null;
             }
@@ -206,8 +208,38 @@ namespace pfolder
                 ResetForm();
                 return null;
             }
+
+            if (goToProfile)
+            {
+                if (SID == projectNo)
+                {
+                    LogStatus("SID retrieved is same as project number. Cannot open WorkSmart profile.");
+
+                    string error = "Project does not exist on WorkSmart";
+                    ShowError(error, MessageType.Error);
+                    ResetForm();
+                    return null;
+                }
+
+                string profileUrl = "http://pds.bc.com/default.asp?header=profileHeader.asp&fltrID=" + SID + "&tabID=Profile&itemID=";
+                if (!_testing)
+                {
+                    try
+                    {
+                        System.Diagnostics.Process.Start(profileUrl);
+                    }
+                    catch (Exception)
+                    {
+                        string error = "Could not launch browser. Please try again.";
+                        ShowError(error, MessageType.Error);
+                    }
+                }
+                ResetForm(false);
+                return profileUrl;
+            }
+
             // Project does not exist on PDS... check JSON tree
-            else if (SID == projectNo)
+            if (SID == projectNo)
             {
                 LogStatus("SID retrieved is same as project number. Loading json...");
 
@@ -216,7 +248,8 @@ namespace pfolder
                     path = CheckJsonForProject(projectNo);
                     jsonChecked = true;
                     goto openFolder;
-                } else
+                }
+                else
                 {
                     string error = "Project does not have a BD folder on record.";
                     ShowError(error, MessageType.Warning);

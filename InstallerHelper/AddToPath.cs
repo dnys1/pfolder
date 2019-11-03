@@ -22,7 +22,7 @@ namespace InstallerHelper
             string currentPath = (string)Registry.LocalMachine.CreateSubKey(keyName).GetValue("Path", "", RegistryValueOptions.DoNotExpandEnvironmentNames);
             // Include target directory in PATH variable
             string targetDir = Context.Parameters["TargetDir"];
-            if (currentPath.IndexOf(targetDir) != -1)
+            if (currentPath.Contains(targetDir))
             {
                 return;
             }

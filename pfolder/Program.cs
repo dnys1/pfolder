@@ -16,6 +16,8 @@ namespace pfolder
         static void Main(string[] args)
         {
             string projectNo = null;
+            bool isBD = false;
+            bool goToProfile = false;
             if (args.Length != 0)
             {
                 Regex projectNoMatcher = new Regex(@"^\d\d\d\d\d\d$");
@@ -24,7 +26,19 @@ namespace pfolder
                     if (projectNoMatcher.IsMatch(arg))
                     {
                         projectNo = arg;
-                        break;
+                        continue;
+                    }
+                    
+                    if (arg.Contains("b"))
+                    {
+                        isBD = true;
+                        continue;
+                    }
+
+                    if (arg.Contains("w"))
+                    {
+                        goToProfile = true;
+                        continue;
                     }
                 }
             }
@@ -35,7 +49,7 @@ namespace pfolder
                 Application.Run(new ProjectToolForm());
             } else
             {
-                AsyncHelpers.RunSync(() => new ProjectToolForm().LoadProjectFolder(projectNo));
+                AsyncHelpers.RunSync(() => new ProjectToolForm().LoadProjectFolder(projectNo, isBD: isBD, goToProfile: goToProfile));
             }
         }
     }
