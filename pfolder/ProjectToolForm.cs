@@ -186,14 +186,16 @@ namespace pfolder
                 LogStatus("Retrieving cookie from server...");
 
                 _cookie = await GetCookie();
-                
+                ProgressBar.Value = 25;
+
                 LogStatus(string.Concat("Cookie retrieved: ", _cookie));
             }
             
             LogStatus(string.Concat("Retrieving SID for Project ", projectNo));
 
             string SID = await GetSID(projectNo);
-            
+            ProgressBar.Value = 50;
+
             LogStatus(string.Concat("SID Retrieved: ", SID));
 
             string path;
@@ -220,6 +222,8 @@ namespace pfolder
                     ResetForm();
                     return null;
                 }
+
+                ProgressBar.Value = 100;
 
                 string profileUrl = "http://pds.bc.com/default.asp?header=profileHeader.asp&fltrID=" + SID + "&tabID=Profile&itemID=";
                 if (!_testing)
@@ -257,9 +261,9 @@ namespace pfolder
                     return UNAVAILABLE;
                 }
             }
-
-            ProgressBar.Value = 25;
+            
             string binderHTML = await GetBinderHTML(SID);
+            ProgressBar.Value = 75;
 
             // If nothing came back from request, return without continuing
             if (binderHTML == null)
@@ -270,9 +274,9 @@ namespace pfolder
                 return null;
             }
 
-            ProgressBar.Value = 75;
             path = GetProjectPath(binderHTML, isBD);
-            
+            ProgressBar.Value = 100;
+
             LogStatus(string.Concat("Project path retrieved: ", path));
 
         openFolder:
@@ -326,8 +330,7 @@ namespace pfolder
 
             if (!_testing)
             {
-                ProgressBar.Value = 100;
-                if (path.IndexOf("file:") != -1)
+                if (path.Contains("file:"))
                 {
                     LogStatus("Opening... " + path);
 
@@ -344,6 +347,8 @@ namespace pfolder
                 }
                 else
                 {
+                    LogStatus("Unkown path: " + path, MessageType.Error);
+
                     string error = "An unknown error occurred. Please try again.";
                     ShowError(error, MessageType.Error);
                     ResetForm();
