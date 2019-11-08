@@ -29,13 +29,13 @@ namespace pfolder
                         continue;
                     }
                     
-                    if (arg.Contains("b"))
+                    if (arg.ToLower().Contains("b"))
                     {
                         isBD = true;
                         continue;
                     }
 
-                    if (arg.Contains("w"))
+                    if (arg.ToLower().Contains("w"))
                     {
                         goToProfile = true;
                         continue;

@@ -34,6 +34,17 @@ namespace InstallerHelper.Tests
         }
 
         [TestMethod()]
+        public void AddPath_AlreadyInPath()
+        {
+            string targetDir = @"C:\Program Files (x86)\Brown and Caldwell\Project Folder Tool\";
+            string currentPath = @"C:\Program Files\dotnet\;C:\Program Files (x86)\Brown and Caldwell\Project Folder Tool\;";
+            string expectedPath = @"C:\Program Files\dotnet\;C:\Program Files (x86)\Brown and Caldwell\Project Folder Tool\;";
+            string newPath = AddToPath.addToPath(currentPath, targetDir);
+
+            Assert.AreEqual(expectedPath, newPath);
+        }
+
+        [TestMethod()]
         public void RemovePath_Beginning_Test()
         {
             string targetDir = @"C:\Program Files (x86)\Brown and Caldwell\Project Folder Tool\";
@@ -60,6 +71,33 @@ namespace InstallerHelper.Tests
             string currentPath = @"C:\Program Files\dotnet\;C:\Program Files (x86)\Brown and Caldwell\Project Folder Tool\;";
             string newPath = AddToPath.removeFromPath(currentPath, targetDir);
             Assert.AreEqual(@"C:\Program Files\dotnet\;", newPath);
+        }
+
+        [TestMethod()]
+        public void RemovePath_NotInPath()
+        {
+            string targetDir = @"C:\Program Files (x86)\Brown and Caldwell\Project Folder Tool\";
+            string currentPath = @"C:\Program Files\dotnet\;";
+            string newPath = AddToPath.removeFromPath(currentPath, targetDir);
+            Assert.AreEqual(@"C:\Program Files\dotnet\;", newPath);
+        }
+
+        [TestMethod()]
+        public void TargetDir_TwoSlashes()
+        {
+            string targetDir = @"C:\Program Files (x86)\Brown and Caldwell\Project Folder Tool\\";
+            string expectedDir = @"C:\Program Files (x86)\Brown and Caldwell\Project Folder Tool\";
+
+            Assert.AreEqual(expectedDir, AddToPath.cleanTargetDir(targetDir));
+        }
+
+        [TestMethod()]
+        public void TargetDir_OneSlash()
+        {
+            string targetDir = @"C:\Program Files (x86)\Brown and Caldwell\Project Folder Tool\";
+            string expectedDir = @"C:\Program Files (x86)\Brown and Caldwell\Project Folder Tool\";
+
+            Assert.AreEqual(expectedDir, AddToPath.cleanTargetDir(targetDir));
         }
     }
 }
